@@ -153,5 +153,189 @@ NONE
 |n|BigDecimal|成交笔数|
 |slot|String|K线类型|
 
+
+### 2.订阅深度
+
+当市场深度发生变化时，发送最新市场深度更新数据。
+
+**参数:**
+
+|参数名|	参数类型|	必填|	描述|
+| :-----    | :-----   | :-----    | :-----   |
+|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+|subscribe|String|是|订阅K线数据:`depth`|
+|depth|String|是|支持选择:10/50/100|
+|pair|String|是|交易对:`eth_btc`|
+
+
+**请求示例:**
+
+```javascript
+#订阅K线数据
+# Subscribe Request
+{
+    "action":"subscribe",
+    "subscribe":"depth",
+    "depth":"100",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+{
+    "depth":{
+        "asks":[
+            [
+                0.00003377,
+                0.0176
+            ],
+            ...
+        ],
+        "bids":Array[100]
+    },
+    "type":"depth",
+    "pair":"dax_eth",
+    "count":100,
+    "SERVER":"V2",
+    "TS":"2019-06-28T19:48:23.938"
+}
+
+#取消订阅K线数据
+# Subscribe Request
+{
+    "action":"unsubscribe",
+    "subscribe":"depth",
+    "depth":"100",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+NONE
+```
+
+**返回值说明:**
+
+|参数名|	参数类型|	描述|
+| :-----    | :-----  | :-----   |
+|asks|List<BigDecimal>|卖方深度,list.get(0):委托价, list.get(1):委托数量|
+|bids|List<BigDecimal>|买方深度|
+
+
+### 3.成交明细
+
+提供市场最新成交明细。
+
+**参数:**
+
+|参数名|	参数类型|	必填|	描述|
+| :-----    | :-----   | :-----    | :-----   |
+|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+|subscribe|String|是|成交明细:`trade`|
+|pair|String|是|交易对:`eth_btc`|
+
+
+**请求示例:**
+
+```javascript
+#订阅K线数据
+# Subscribe Request
+{
+    "action":"subscribe",
+    "subscribe":"trade",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+{
+    "trade":{
+        "volume":6.3607,
+        "amount":77148.9303,
+        "price":12129,
+        "direction":"sell",
+        "TS":"2019-06-28T19:55:49.460"
+    },
+    "type":"trade",
+    "pair":"btc_usdt",
+    "SERVER":"V2",
+    "TS":"2019-06-28T19:55:49.466"
+}
+
+#取消订阅K线数据
+# Subscribe Request
+{
+    "action":"unsubscribe",
+    "subscribe":"depth",
+    "depth":"100",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+NONE
+```
+
+**返回值说明:**
+
+|参数名|	参数类型|	描述|
+| :-----    | :-----  | :-----   |
+|amount|String|最近成交数量|
+|price|Integer|成交价|
+|volumePrice|String|最近成交数额|
+|direction|String|`sell`,`buy`|
+|TS|String|成交时间|
       
+ 
+ ### 4.市场概要
+
+此主题提供24小时内最新市场概要。。
+
+**参数:**
+
+|参数名|	参数类型|	必填|	描述|
+| :-----    | :-----   | :-----    | :-----   |
+|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+|subscribe|String|是|成交明细:`trade`|
+|pair|String|是|交易对:`eth_btc`|
+
+
+**请求示例:**
+
+```javascript
+#订阅K线数据
+# Subscribe Request
+{
+    "action":"subscribe",
+    "subscribe":"trade",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+{
+    "trade":{
+        "volume":6.3607,
+        "amount":77148.9303,
+        "price":12129,
+        "direction":"sell",
+        "TS":"2019-06-28T19:55:49.460"
+    },
+    "type":"trade",
+    "pair":"btc_usdt",
+    "SERVER":"V2",
+    "TS":"2019-06-28T19:55:49.466"
+}
+
+#取消订阅K线数据
+# Subscribe Request
+{
+    "action":"unsubscribe",
+    "subscribe":"depth",
+    "depth":"100",
+    "pair":"eth_btc"
+}
+# Subscribe Response
+NONE
+```
+
+**返回值说明:**
+
+|参数名|	参数类型|	描述|
+| :-----    | :-----  | :-----   |
+|amount|String|最近成交数量|
+|price|Integer|成交价|
+|volumePrice|String|最近成交数额|
+|direction|String|`sell`,`buy`|
+|TS|String|成交时间|
       
