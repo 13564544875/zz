@@ -81,221 +81,221 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     }
     ```
 
-**返回值说明:**
+    **返回值说明:**
 
-|参数名|	参数类型|	描述|
-| :-----    | :-----  | :-----   |
-|t|BigDecimal|K线更新时间戳|
-|o|BigDecimal|开|
-|h|BigDecimal|高|
-|l|BigDecimal|低|
-|c|BigDecimal|收|
-|v|BigDecimal|成交量|
-|a|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
-|n|BigDecimal|成交笔数|
-|slot|String|K线类型|
-
-
-2.订阅深度
-
-**参数:**
-
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|`depth`|
-|depth|String|是|支持选择:10/50/100|
-|pair|String|是|交易对:`eth_btc`|
+    |参数名|	参数类型|	描述|
+    | :-----    | :-----  | :-----   |
+    |t|BigDecimal|K线更新时间戳|
+    |o|BigDecimal|开|
+    |h|BigDecimal|高|
+    |l|BigDecimal|低|
+    |c|BigDecimal|收|
+    |v|BigDecimal|成交量|
+    |a|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
+    |n|BigDecimal|成交笔数|
+    |slot|String|K线类型|
 
 
-**请求示例:**
+    2.订阅深度
 
-    ```javascript
-    # Subscribe Request
-    {
-        "action":"subscribe",
-        "subscribe":"depth",
-        "depth":"100",
-        "pair":"eth_btc"
-    }
-    # Subscribe Response
-    {
-        "depth":{
-            "asks":[
-                [
-                    0.00003377,
-                    0.0176
+    **参数:**
+
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+    |subscribe|String|是|`depth`|
+    |depth|String|是|支持选择:10/50/100|
+    |pair|String|是|交易对:`eth_btc`|
+
+
+    **请求示例:**
+
+        ```javascript
+        # Subscribe Request
+        {
+            "action":"subscribe",
+            "subscribe":"depth",
+            "depth":"100",
+            "pair":"eth_btc"
+        }
+        # Subscribe Response
+        {
+            "depth":{
+                "asks":[
+                    [
+                        0.00003377,
+                        0.0176
+                    ],
+                    ...
                 ],
-                ...
-            ],
-            "bids":Array[100]
-        },
-        "type":"depth",
-        "pair":"dax_eth",
-        "count":100,
-        "SERVER":"V2",
-        "TS":"2019-06-28T19:48:23.938"
-    }
-    ```
+                "bids":Array[100]
+            },
+            "type":"depth",
+            "pair":"dax_eth",
+            "count":100,
+            "SERVER":"V2",
+            "TS":"2019-06-28T19:48:23.938"
+        }
+        ```
 
-**返回值说明:**
+    **返回值说明:**
 
-|参数名|	参数类型|	描述|
-| :-----    | :-----  | :-----   |
-|asks|List<BigDecimal>|卖方深度,list.get(0):委托价, list.get(1):委托数量|
-|bids|List<BigDecimal>|买方深度|
+    |参数名|	参数类型|	描述|
+    | :-----    | :-----  | :-----   |
+    |asks|List<BigDecimal>|卖方深度,list.get(0):委托价, list.get(1):委托数量|
+    |bids|List<BigDecimal>|买方深度|
 
 
-3.成交记录
+    3.成交记录
 
-**参数:**
+    **参数:**
 
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|`trade`|
-|pair|String|是|交易对:`eth_btc`|
-
-
-**请求示例:**
-
-    ```javascript
-    # Subscribe Request
-    {
-        "action":"subscribe",
-        "subscribe":"trade",
-        "pair":"eth_btc"
-    }
-    # Subscribe Response
-    {
-        "trade":{
-            "volume":6.3607,
-            "amount":77148.9303,
-            "price":12129,
-            "direction":"sell",
-            "TS":"2019-06-28T19:55:49.460"
-        },
-        "type":"trade",
-        "pair":"btc_usdt",
-        "SERVER":"V2",
-        "TS":"2019-06-28T19:55:49.466"
-    }
-    ```
-
-**返回值说明:**
-
-|参数名|	参数类型|	描述|
-| :-----    | :-----  | :-----   |
-|amount|String|最近成交数量|
-|price|Integer|成交价|
-|volumePrice|String|最近成交数额|
-|direction|String|`sell`,`buy`|
-|TS|String|成交时间|
-      
- 
-4.订阅24小时行情
-
-**参数:**
-
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|`tick`|
-|pair|String|是|交易对:`eth_btc`|
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+    |subscribe|String|是|`trade`|
+    |pair|String|是|交易对:`eth_btc`|
 
 
-**请求示例:**
+    **请求示例:**
 
-    ```javascript
-    # Subscribe Request
-    {
-        "action":"subscribe",
-        "subscribe":"tick",
-        "pair":"eth_btc"
-    }
-    # Subscribe Response
-    {
-        "tick":{
-            "to_cny":76643.5,
-            "high":0.02719761,
-            "vol":497529.7686,
-            "low":0.02603071,
-            "change":2.54,
-            "usd":299.12,
-            "to_usd":11083.66,
-            "dir":"sell",
-            "turnover":13224.0186,
-            "latest":0.02698749,
-            "cny":2068.41
-        },
-        "type":"tick",
-        "pair":"eth_btc",
-        "SERVER":"V2",
-        "TS":"2019-07-01T11:33:55.188"
-    }
-    ```
+        ```javascript
+        # Subscribe Request
+        {
+            "action":"subscribe",
+            "subscribe":"trade",
+            "pair":"eth_btc"
+        }
+        # Subscribe Response
+        {
+            "trade":{
+                "volume":6.3607,
+                "amount":77148.9303,
+                "price":12129,
+                "direction":"sell",
+                "TS":"2019-06-28T19:55:49.460"
+            },
+            "type":"trade",
+            "pair":"btc_usdt",
+            "SERVER":"V2",
+            "TS":"2019-06-28T19:55:49.466"
+        }
+        ```
 
-**返回值说明:**
+    **返回值说明:**
 
-|参数名|	参数类型|	描述|
-| :-----    | :-----  | :-----   |
-|high|BigDecimal|24小时内最高价|
-|low|BigDecimal|24小时内最低价|
-|latest|BigDecimal|最新成交价|
-|vol|BigDecimal|成交量|
-|turnover|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
-|to_cny|BigDecimal|btc|
-|to_usd|BigDecimal|btc|
-|cny|BigDecimal|eth|
-|usd|BigDecimal|eth|
-|dir|String|`sell`,`buy`|
-|change|BigDecimal|24小时内涨跌幅|
+    |参数名|	参数类型|	描述|
+    | :-----    | :-----  | :-----   |
+    |amount|String|最近成交数量|
+    |price|Integer|成交价|
+    |volumePrice|String|最近成交数额|
+    |direction|String|`sell`,`buy`|
+    |TS|String|成交时间|
 
-      
-    
-**取消订阅示例:**
 
-    ```javascript
-    #取消K线订阅
-    {
-        "action":"unsubscribe",
-        "subscribe":"kbar",
-        "kbar":"5min",
-        "pair":"eth_btc"
-    }
-    #取消深度订阅
-    {
-        "action":"unsubscribe",
-        "subscribe":"depth",
-        "depth":"100",
-        "pair":"eth_btc"
-    }
-    ```
+    4.订阅24小时行情
+
+    **参数:**
+
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+    |subscribe|String|是|`tick`|
+    |pair|String|是|交易对:`eth_btc`|
+
+
+    **请求示例:**
+
+        ```javascript
+        # Subscribe Request
+        {
+            "action":"subscribe",
+            "subscribe":"tick",
+            "pair":"eth_btc"
+        }
+        # Subscribe Response
+        {
+            "tick":{
+                "to_cny":76643.5,
+                "high":0.02719761,
+                "vol":497529.7686,
+                "low":0.02603071,
+                "change":2.54,
+                "usd":299.12,
+                "to_usd":11083.66,
+                "dir":"sell",
+                "turnover":13224.0186,
+                "latest":0.02698749,
+                "cny":2068.41
+            },
+            "type":"tick",
+            "pair":"eth_btc",
+            "SERVER":"V2",
+            "TS":"2019-07-01T11:33:55.188"
+        }
+        ```
+
+    **返回值说明:**
+
+    |参数名|	参数类型|	描述|
+    | :-----    | :-----  | :-----   |
+    |high|BigDecimal|24小时内最高价|
+    |low|BigDecimal|24小时内最低价|
+    |latest|BigDecimal|最新成交价|
+    |vol|BigDecimal|成交量|
+    |turnover|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
+    |to_cny|BigDecimal|btc|
+    |to_usd|BigDecimal|btc|
+    |cny|BigDecimal|eth|
+    |usd|BigDecimal|eth|
+    |dir|String|`sell`,`buy`|
+    |change|BigDecimal|24小时内涨跌幅|
+
+
+
+    **取消订阅示例:**
+
+        ```javascript
+        #取消K线订阅
+        {
+            "action":"unsubscribe",
+            "subscribe":"kbar",
+            "kbar":"5min",
+            "pair":"eth_btc"
+        }
+        #取消深度订阅
+        {
+            "action":"unsubscribe",
+            "subscribe":"depth",
+            "depth":"100",
+            "pair":"eth_btc"
+        }
+        ```
 
 * 请求数据（request）
     Websocket服务器同时支持一次性请求数据
 
-1.用请求方式一次性获取K线数据需要额外提供以下参数：
+    1.用请求方式一次性获取K线数据需要额外提供以下参数：
 
-**参数:**
+    **参数:**
 
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|start|String|否|开始时间,接受两种格式，如`2018-08-03T17:32:00`（北京时间）,另一种是时间戳，如`1514736000`|
-|end|String|否|截止时间|
-|size|String|否|获取的kbar的条数|
-
-
-2.用请求方式一次性获取成交记录需要额外提供以下参数：
-
-**参数:**
-
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|size|String|是|获取的交易条数|
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |start|String|否|开始时间,接受两种格式，如`2018-08-03T17:32:00`（北京时间）,另一种是时间戳，如`1514736000`|
+    |end|String|否|截止时间|
+    |size|String|否|获取的kbar的条数|
 
 
-**请求示例:**
+    2.用请求方式一次性获取成交记录需要额外提供以下参数：
+
+    **参数:**
+
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |size|String|是|获取的交易条数|
+
+
+    **请求示例:**
 
     ```javascript
     # 获取K线数据 Request
@@ -304,9 +304,9 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
         "request":"kbar",
         "kbar":"5min",
         "pair":"eth_btc"
-        "start":"eth_btc"
-        "end":"eth_btc"
-        "size":"600"
+        "start":"2018-08-03T17:32:00"
+        "end":"2018-08-05T17:32:00"
+        "size":"576"
     }
     # 获取深度数据 Request
     {
