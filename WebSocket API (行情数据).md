@@ -162,29 +162,29 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     **请求示例:**
 
-        ```javascript
-        
-        # 订阅请求
-        {
-            "action":"subscribe",
-            "subscribe":"trade",
-            "pair":"eth_btc"
-        }
-        # 推送数据
-        {
-            "trade":{
-                "volume":6.3607,
-                "amount":77148.9303,
-                "price":12129,
-                "direction":"sell",
-                "TS":"2019-06-28T19:55:49.460"
-            },
-            "type":"trade",
-            "pair":"btc_usdt",
-            "SERVER":"V2",
-            "TS":"2019-06-28T19:55:49.466"
-        }
-        ```
+    ```javascript
+
+    # 订阅请求
+    {
+        "action":"subscribe",
+        "subscribe":"trade",
+        "pair":"eth_btc"
+    }
+    # 推送数据
+    {
+        "trade":{
+            "volume":6.3607,
+            "amount":77148.9303,
+            "price":12129,
+            "direction":"sell",
+            "TS":"2019-06-28T19:55:49.460"
+        },
+        "type":"trade",
+        "pair":"btc_usdt",
+        "SERVER":"V2",
+        "TS":"2019-06-28T19:55:49.466"
+    }
+    ```
 
     **返回值说明:**
 
@@ -210,35 +210,35 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     **请求示例:**
 
-        ```javascript
-        
-        # 订阅请求
-        {
-            "action":"subscribe",
-            "subscribe":"tick",
-            "pair":"eth_btc"
-        }
-        # 推送数据
-        {
-            "tick":{
-                "to_cny":76643.5,
-                "high":0.02719761,
-                "vol":497529.7686,
-                "low":0.02603071,
-                "change":2.54,
-                "usd":299.12,
-                "to_usd":11083.66,
-                "dir":"sell",
-                "turnover":13224.0186,
-                "latest":0.02698749,
-                "cny":2068.41
-            },
-            "type":"tick",
-            "pair":"eth_btc",
-            "SERVER":"V2",
-            "TS":"2019-07-01T11:33:55.188"
-        }
-        ```
+    ```javascript
+
+    # 订阅请求
+    {
+        "action":"subscribe",
+        "subscribe":"tick",
+        "pair":"eth_btc"
+    }
+    # 推送数据
+    {
+        "tick":{
+            "to_cny":76643.5,
+            "high":0.02719761,
+            "vol":497529.7686,
+            "low":0.02603071,
+            "change":2.54,
+            "usd":299.12,
+            "to_usd":11083.66,
+            "dir":"sell",
+            "turnover":13224.0186,
+            "latest":0.02698749,
+            "cny":2068.41
+        },
+        "type":"tick",
+        "pair":"eth_btc",
+        "SERVER":"V2",
+        "TS":"2019-07-01T11:33:55.188"
+    }
+    ```
 
     **返回值说明:**
 
@@ -260,23 +260,23 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     **取消订阅示例:**
 
-        ```javascript
-        
-        #取消K线订阅
-        {
-            "action":"unsubscribe",
-            "subscribe":"kbar",
-            "kbar":"5min",
-            "pair":"eth_btc"
-        }
-        #取消深度订阅
-        {
-            "action":"unsubscribe",
-            "subscribe":"depth",
-            "depth":"100",
-            "pair":"eth_btc"
-        }
-        ```
+    ```javascript
+
+    #取消K线订阅
+    {
+        "action":"unsubscribe",
+        "subscribe":"kbar",
+        "kbar":"5min",
+        "pair":"eth_btc"
+    }
+    #取消深度订阅
+    {
+        "action":"unsubscribe",
+        "subscribe":"depth",
+        "depth":"100",
+        "pair":"eth_btc"
+    }
+    ```
 
 * 请求数据（request）
     Websocket服务器同时支持一次性请求数据
