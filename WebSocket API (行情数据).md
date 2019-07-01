@@ -12,30 +12,20 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
 ## 请求与订阅说明
 
-1. 访问地址: `wss://www.lbkex.net/ws/V2/`
+### 访问地址: `wss://www.lbkex.net/ws/V2/`
 
-2. 数据格式：
-    所有发送/接受的数据都是标准多JSON格式。每个标准的请求都有一个action字段,表明请求的动作类型。
-    现有的action字段是如下几种动作: 
-    > - ping:心跳信息;
-    > - pong:回应心跳;
-    > - request:请求数据;
-    > - subscribe:订阅数据;
-    > - unsubscribe:退订数据;
-    * 两次动作之间至少间隔0.1s，过于频繁对请求会被切断连接。
-
-3. 心跳（ping/pong）
+2. 心跳（ping/pong）
     为了防止僵尸链接，减少服务器负荷，服务器端会定时向客户连接发送心跳PING信息。客户端收到PING消息后，应立即回应。如果超过一分钟没有回应任何PING消息，连接会被自动关闭。同时，客户也可以向服务器短发送PING消息，用于检查连接是否正常。服务器端收到PING消息后，也会回应对应端PONG消息。
 
 **请求示例:**
 
 ```javascript
-# Subscribe Request
+# ping
 {
     "action":"ping",
     "ping":"0ca8f854-7ba7-4341-9d86-d3327e52804e"
 }
-# Subscribe Response
+# pong
 {
     "action":"pong",
     "pong":"0ca8f854-7ba7-4341-9d86-d3327e52804e"
@@ -45,34 +35,34 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 其中，pong字段必需和收到对ping消息字段完全一致。
 
 
-4. 订阅/退订数据（subscribe/unsubscribe）
-    每个订阅数据应该至少包括一个subscribe字段，用于指定订阅的数据类型。现在可以订阅的数据包括：kbar，tick，depth，trade四种。每个订阅数据都需要一个pair字段，用来指定订阅的交易对，交易对以下划线（_)、连接。匿名用户单个连接不应该订阅超过10种数据，用户登陆后可以同时订阅更多数据。
-    * kbar:  K线数据（蜡烛图）。除了上面的两个字段，还需要一个额外字段：kbar，
-      用于指定K线的时间间隔，当前该参数接受的选项包括1min, 5min, 15min, 30min, 
-      1hr, 4hr, day, week, month, year; 
-    * depth：当前交易的深度数据。除了上面的两个字段，还需要一个额外字段：depth，用于
-      指定深度，现在有 10/50/100 三个深度可以选择
-    * tick： 当前交易的实时快照
-    * trade：逐条交易记录
-
-    以下是一些订阅数据的例子：
-    订阅eth/btc交易对的5min K线：
-    {"action": "subscribe", "subscribe": "kbar", "kbar": "5min", "pair": "eth_btc"}
-
-    订阅dax/eth交易对的深度数据（深度10）：
-    {"action": "subscribe", "subscribe": "depth", "depth": 10, "pair": "dax_eth"}
-
-    订阅btc/usdt交易对的交易记录：
-    {"action": "subscribe", "subscribe": "trade", "pair": "btc_usdt"}
-
-    订阅vtho/eth交易对的快照记录：
-    {"action": "subscribe", "subscribe": "tick", "pair": "vtho_eth"}
+3. 订阅/退订数据（subscribe/unsubscribe）
+    每个订阅数据应该至少包括一个subscribe字段，用于指定订阅的数据类型。现在可以订阅的数据包括：kbar，tick，depth，trade四种。每个订阅数据都需要一个pair字段，用来指定订阅的交易对，交易对以下划线（_)、连接。订阅成功后一旦所订阅的数据有更新，Websocket客户端将收到服务器推送的更新消息
     
-    取消订阅eth/btc交易对的5min K线：
-    {"action": "unsubscribe", "subscribe": "kbar", "kbar": "5min", "pair": "eth_btc"}
+**取消订阅示例:**
+
+```javascript
+{
+    "action":"unsubscribe",
+    "subscribe":"kbar",
+    "kbar":"5min",
+    "pair":"eth_btc"
+}
+```
+
+4. 请求数据（request）
+    Websocket服务器同时支持一次性请求数据
+
+请求数据的格式如下：
+
+{
+  "req": "market.ethbtc.kline.1min",
+  "id": "id10"
+}
+{ "req": "topic to req", "id": "id generate by client" }
+
+一次性返回的数据：
 
 
-5. 请求数据（request）
     每个订阅数据应该至少包括一个request字段，用于指定订阅的数据类型。现在可以订阅
     的数据包括：kbar，tick，depth，trade四种。除kbar外，其它三种数据暂时不支持
     历史数据的查询。
