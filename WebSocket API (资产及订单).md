@@ -114,9 +114,9 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 
 
 
+##
 
-
-## websocket订阅/退订数据（subscribe/unsubscribe）
+## Websocket订阅/退订数据（subscribe/unsubscribe）
 
 1.订阅订单更新
 
