@@ -32,7 +32,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     }
     ```
 
-其中，pong字段必需和收到对ping消息字段完全一致。
+    其中，pong字段必需和收到对ping消息字段完全一致。
 
 
 
@@ -40,18 +40,18 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     每个订阅数据应该至少包括一个subscribe字段，用于指定订阅的数据类型。现在可以订阅的数据包括：kbar，tick，depth，trade四种。每个订阅数据都需要一个pair字段，用来指定订阅的交易对，交易对以下划线（_)、连接。订阅成功后一旦所订阅的数据有更新，Websocket客户端将收到服务器推送的更新消息
     
 
-1.订阅K线数据
+    1.订阅K线数据
 
-**参数:**
+    **参数:**
 
-|参数名|	参数类型|	必填|	描述|
-| :-----    | :-----   | :-----    | :-----   |
-|action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|`kbar`|
-|kbar|String|是|可订阅的K线类型<br>`1min`:1分钟<br>`5min`:5分钟<br>`15min`:15分钟<br>`30min`:30分钟<br>`1hr`:1小时<br>`4hr`:4小时<br>`day`:1日<br>`week`:1周<br>`month`:1月<br>`year`:1年|
-|pair|String|是|交易对:`eth_btc`|
+    |参数名|	参数类型|	必填|	描述|
+    | :-----    | :-----   | :-----    | :-----   |
+    |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
+    |subscribe|String|是|`kbar`|
+    |kbar|String|是|可订阅的K线类型<br>`1min`:1分钟<br>`5min`:5分钟<br>`15min`:15分钟<br>`30min`:30分钟<br>`1hr`:1小时<br>`4hr`:4小时<br>`day`:1日<br>`week`:1周<br>`month`:1月<br>`year`:1年|
+    |pair|String|是|交易对:`eth_btc`|
 
-**请求示例:**
+    **请求示例:**
 
     ```javascript
     # Subscribe Request
