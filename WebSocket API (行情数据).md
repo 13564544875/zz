@@ -51,17 +51,17 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     |kbar|String|是|可订阅的K线类型<br>`1min`:1分钟<br>`5min`:5分钟<br>`15min`:15分钟<br>`30min`:30分钟<br>`1hr`:1小时<br>`4hr`:4小时<br>`day`:1日<br>`week`:1周<br>`month`:1月<br>`year`:1年|
     |pair|String|是|交易对:`eth_btc`|
 
-    **请求示例:**
+    **示例:**
 
     ```javascript
-    # Subscribe Request
+    # 订阅请求
     {
         "action":"subscribe",
         "subscribe":"kbar",
         "kbar":"5min",
         "pair":"eth_btc"
     }
-    # Subscribe Response
+    # 推送数据
     {
         "kbar":{
             "a":64.32991311,
@@ -111,14 +111,14 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
-        # Subscribe Request
+        # 订阅请求
         {
             "action":"subscribe",
             "subscribe":"depth",
             "depth":"100",
             "pair":"eth_btc"
         }
-        # Subscribe Response
+        # 推送数据
         {
             "depth":{
                 "asks":[
@@ -160,13 +160,13 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
-        # Subscribe Request
+        # 订阅请求
         {
             "action":"subscribe",
             "subscribe":"trade",
             "pair":"eth_btc"
         }
-        # Subscribe Response
+        # 推送数据
         {
             "trade":{
                 "volume":6.3607,
@@ -207,13 +207,13 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
-        # Subscribe Request
+        # 订阅请求
         {
             "action":"subscribe",
             "subscribe":"tick",
             "pair":"eth_btc"
         }
-        # Subscribe Response
+        # 推送数据
         {
             "tick":{
                 "to_cny":76643.5,
