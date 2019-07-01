@@ -19,7 +19,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     **示例:**
 
-    ```javascript
+```javascript
     # ping
     {
         "action":"ping",
@@ -30,7 +30,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
         "action":"pong",
         "pong":"0ca8f854-7ba7-4341-9d86-d3327e52804e"
     }
-    ```
+```
 
     其中，pong字段必需和收到对ping消息字段完全一致。
 
