@@ -87,7 +87,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     |参数名|	参数类型|	描述|
     | :-----    | :-----  | :-----   |
-    |t|BigDecimal|K线更新时间戳|
+    |t|Long|K线更新时间戳|
     |o|BigDecimal|开|
     |h|BigDecimal|高|
     |l|BigDecimal|低|
