@@ -9,10 +9,10 @@
 ## 与Websocket接口相关的REST接口
 
 1.生成subscribeKey
-```
-POST /v1/subscribe/get_key.do
-```
-从创建时刻起有效期为60分钟
+    ```
+    POST /v1/subscribe/get_key.do
+    ```
+    从创建时刻起有效期为60分钟
 	
 **请求参数:**
 
