@@ -12,9 +12,9 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
 ## 请求与订阅说明
 
-### 访问地址: `wss://www.lbkex.net/ws/V2/`
+访问地址: `wss://www.lbkex.net/ws/V2/`
 
-2. 心跳（ping/pong）
+心跳（ping/pong）
     为了防止僵尸链接，减少服务器负荷，服务器端会定时向客户连接发送心跳PING信息。客户端收到PING消息后，应立即回应。如果超过一分钟没有回应任何PING消息，连接会被自动关闭。同时，客户也可以向服务器短发送PING消息，用于检查连接是否正常。服务器端收到PING消息后，也会回应对应端PONG消息。
 
 **请求示例:**
@@ -35,52 +35,10 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 其中，pong字段必需和收到对ping消息字段完全一致。
 
 
-3. 订阅/退订数据（subscribe/unsubscribe）
+订阅/退订数据（subscribe/unsubscribe）
     每个订阅数据应该至少包括一个subscribe字段，用于指定订阅的数据类型。现在可以订阅的数据包括：kbar，tick，depth，trade四种。每个订阅数据都需要一个pair字段，用来指定订阅的交易对，交易对以下划线（_)、连接。订阅成功后一旦所订阅的数据有更新，Websocket客户端将收到服务器推送的更新消息
     
-**取消订阅示例:**
 
-```javascript
-{
-    "action":"unsubscribe",
-    "subscribe":"kbar",
-    "kbar":"5min",
-    "pair":"eth_btc"
-}
-```
-
-4. 请求数据（request）
-    Websocket服务器同时支持一次性请求数据
-
-请求数据的格式如下：
-
-{
-  "req": "market.ethbtc.kline.1min",
-  "id": "id10"
-}
-{ "req": "topic to req", "id": "id generate by client" }
-
-一次性返回的数据：
-
-
-    每个订阅数据应该至少包括一个request字段，用于指定订阅的数据类型。现在可以订阅
-    的数据包括：kbar，tick，depth，trade四种。除kbar外，其它三种数据暂时不支持
-    历史数据的查询。
-    * kbar:  K线数据（蜡烛图）。除了上面的两个字段，还需要一个额外字段：kbar，
-      用于指定K线的时间间隔，当前该参数接受的选项包括1min, 5min, 15min, 30min, 
-      1hr, 4hr, day, week, month, year。如果
-      需要查询历史数据，需要增加字段start, end, size。start是开始时间, end是截止时间,
-      接受两种格式，一种是ISO格式，精确到秒，如"2018-08-03T17:32:00"（北京时间）,
-      另一种是UNIX时间戳，暨1970年1月1日0时（UTC/GMT）开始的秒数，如1514736000.0代
-      表北京时间2018年1月1日0点。size是需要获取的kbar的条数。最大不超过1440条。
-      若没有start, end, size参数，默认获取最新的一条kbar数据。
-    * depth：当前交易的深度数据。除了上面的两个字段，还需要一个额外字段：depth，
-      用于指定深度，现在有 10/50/100 三个深度可以选择    
-    * tick： 当前交易的实时快照
-    * trade：获取最近的交易记录。除了上面的两个字段，还需要一个额外字段：size，用
-      于指定获取的交易数目。最多不超过100条。
-      
-      
 ### 1.订阅K线数据
 
 一旦K线数据产生，Websocket服务器将推送至客户端：
@@ -98,7 +56,6 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 **请求示例:**
 
 ```javascript
-#订阅K线数据
 # Subscribe Request
 {
     "action":"subscribe",
@@ -124,17 +81,6 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     "SERVER":"V2",
     "TS":"2019-06-28T17:49:22.722"
 }
-
-#取消订阅K线数据
-# Subscribe Request
-{
-    "action":"unsubscribe",
-    "subscribe":"kbar",
-    "kbar":"5min",
-    "pair":"eth_btc"
-}
-# Subscribe Response
-NONE
 ```
 
 **返回值说明:**
@@ -169,7 +115,6 @@ NONE
 **请求示例:**
 
 ```javascript
-#订阅K线数据
 # Subscribe Request
 {
     "action":"subscribe",
@@ -195,17 +140,6 @@ NONE
     "SERVER":"V2",
     "TS":"2019-06-28T19:48:23.938"
 }
-
-#取消订阅K线数据
-# Subscribe Request
-{
-    "action":"unsubscribe",
-    "subscribe":"depth",
-    "depth":"100",
-    "pair":"eth_btc"
-}
-# Subscribe Response
-NONE
 ```
 
 **返回值说明:**
@@ -232,7 +166,6 @@ NONE
 **请求示例:**
 
 ```javascript
-#订阅K线数据
 # Subscribe Request
 {
     "action":"subscribe",
@@ -253,17 +186,6 @@ NONE
     "SERVER":"V2",
     "TS":"2019-06-28T19:55:49.466"
 }
-
-#取消订阅K线数据
-# Subscribe Request
-{
-    "action":"unsubscribe",
-    "subscribe":"depth",
-    "depth":"100",
-    "pair":"eth_btc"
-}
-# Subscribe Response
-NONE
 ```
 
 **返回值说明:**
@@ -293,7 +215,6 @@ NONE
 **请求示例:**
 
 ```javascript
-#订阅K线数据
 # Subscribe Request
 {
     "action":"subscribe",
@@ -314,17 +235,6 @@ NONE
     "SERVER":"V2",
     "TS":"2019-06-28T19:55:49.466"
 }
-
-#取消订阅K线数据
-# Subscribe Request
-{
-    "action":"unsubscribe",
-    "subscribe":"depth",
-    "depth":"100",
-    "pair":"eth_btc"
-}
-# Subscribe Response
-NONE
 ```
 
 **返回值说明:**
@@ -337,3 +247,48 @@ NONE
 |direction|String|`sell`,`buy`|
 |TS|String|成交时间|
       
+    
+**取消订阅示例:**
+
+```javascript
+{
+    "action":"unsubscribe",
+    "subscribe":"kbar",
+    "kbar":"5min",
+    "pair":"eth_btc"
+}
+```
+
+请求数据（request）
+    Websocket服务器同时支持一次性请求数据
+
+请求数据的格式如下：
+
+{
+  "req": "market.ethbtc.kline.1min",
+  "id": "id10"
+}
+{ "req": "topic to req", "id": "id generate by client" }
+
+一次性返回的数据：
+
+
+    每个订阅数据应该至少包括一个request字段，用于指定订阅的数据类型。现在可以订阅
+    的数据包括：kbar，tick，depth，trade四种。除kbar外，其它三种数据暂时不支持
+    历史数据的查询。
+    * kbar:  K线数据（蜡烛图）。除了上面的两个字段，还需要一个额外字段：kbar，
+      用于指定K线的时间间隔，当前该参数接受的选项包括1min, 5min, 15min, 30min, 
+      1hr, 4hr, day, week, month, year。如果
+      需要查询历史数据，需要增加字段start, end, size。start是开始时间, end是截止时间,
+      接受两种格式，一种是ISO格式，精确到秒，如"2018-08-03T17:32:00"（北京时间）,
+      另一种是UNIX时间戳，暨1970年1月1日0时（UTC/GMT）开始的秒数，如1514736000.0代
+      表北京时间2018年1月1日0点。size是需要获取的kbar的条数。最大不超过1440条。
+      若没有start, end, size参数，默认获取最新的一条kbar数据。
+    * depth：当前交易的深度数据。除了上面的两个字段，还需要一个额外字段：depth，
+      用于指定深度，现在有 10/50/100 三个深度可以选择    
+    * tick： 当前交易的实时快照
+    * trade：获取最近的交易记录。除了上面的两个字段，还需要一个额外字段：size，用
+      于指定获取的交易数目。最多不超过100条。
+      
+      
+
