@@ -4,15 +4,15 @@
 
 * 本篇所列出`REST`接口访问根URL：`https://www.lbkex.net/` 或 `https://api.lbkex.com/`
 * 本篇所列出的`Websocket`访问地址: `wss://www.lbkex.net/ws/V2/`
+*
 
 ## 与Websocket接口相关的REST接口
 
 1.生成subscribeKey
-	```
-	POST /v1/subscribe/get_key.do
-	```
-	从创建时刻起有效期为60分钟
-	
+```
+POST /v1/subscribe/get_key.do
+```
+从创建时刻起有效期为60分钟
 	
 **请求参数:**
 
@@ -42,7 +42,7 @@ POST https://www.lbkex.net/v1/subscribe/get_key.do
 |subscribeKey|String|`subscribeKey`| 
 
 
-### 2.延长subscribeKey有效期
+2.延长subscribeKey有效期
 ```
 POST /v1/subscribe/refresh_key.do
 ```
@@ -78,7 +78,7 @@ POST https://www.lbkex.net/v1/subscribe/refresh_key.do
 |result|String|true：成功，false：失败|
 
 
-### 3.关闭subscribeKey
+3.关闭subscribeKey
 ```
 POST /v1/subscribe/destroy_key.do
 ```
@@ -93,7 +93,7 @@ POST /v1/subscribe/destroy_key.do
 |sign|String|是|请求参数的签名|
 |subscribeKey|String|是|`subscribeKey`|
 
-**请求示例:**
+**示例:**
 
 ```javascript
 # Request
@@ -115,41 +115,32 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 
 
 
-
-每个标准的请求都有一个action字段,表明请求的动作类型。
-现有的action字段是如下几种动作: 
-> - ping:心跳信息;
-> - pong:回应心跳;
-> - request:请求数据;
-> - subscribe:订阅数据;
-> - unsubscribe:退订数据;
-* 两次动作之间至少间隔0.1s，过于频繁对请求会被切断连接。
-
 ## websocket订阅/退订数据（subscribe/unsubscribe）
 
-### 1.订阅订单更新
+1.订阅订单更新
+
 当账户下有新订单创建、订单有新成交或者新的状态变化时会推送此类事件
 
 **参数:**
 
 |参数名|	参数类型|	必填|	描述|
 | :-----    | :-----   | :-----    | :-----   |
-|action|String|是|请求的动作类型:`subscribe`:订阅数据|
-|subscribe|String|是|订阅数据:`orderUpdate`|
+|action|String|是|请求的动作类型:`subscribe`|
+|subscribe|String|是|`orderUpdate`|
 |subscribeKey|String|是|`subscribeKey`|
 |pair|String|是|交易对如:`eth_btc`,支持匹配全部:`all`|
 
-**请求示例:**
+**示例:**
 
 ```javascript
-# Subscribe Request
+# 订阅请求
 {
   "action": "subscribe",
   "subscribe": "orderUpdate",
   "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
   "pair": "*",
 }
-# Subscribe Response
+# 推送数据
 {
     "pair":"eth_btc",	
     "type":"orderUpdate",
@@ -181,7 +172,8 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 |updateTime|Long|订单更新时间|
 
 
-### 2.取消订阅订单更新
+2.取消订阅订单更新
+
 关闭订单数据的推送
 
 **参数:**
@@ -193,17 +185,14 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 |subscribeKey|String|是|`subscribeKey`|
 |pair|String|是|交易对如:`eth_btc`,支持匹配全部:`all`|
 
-**请求示例:**
+**示例:**
 
 ```javascript
-# Subscribe Request
 {
   "action": "unsubscribe",
   "subscribe": "orderUpdate",
   "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
   "pair": "*",
 }
-# Subscribe Response
-NONE
 ```
 
