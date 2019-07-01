@@ -114,6 +114,8 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 
 
 
+
+
 ## websocket订阅/退订数据（subscribe/unsubscribe）
 
 1.订阅订单更新
@@ -126,7 +128,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`subscribe`|
 |subscribe|String|是|`orderUpdate`|
-|subscribeKey|String|是|`subscribeKey`|
+|subscribeKey|String|是|通过`REST`接口`/v1/subscribe/refresh_key.do`获取|
 |pair|String|是|交易对如:`eth_btc`,支持匹配全部:`all`|
 
 **示例:**
@@ -180,7 +182,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`unsubscribe`|
 |subscribe|String|是|订阅数据:`orderUpdate`|
-|subscribeKey|String|是|`subscribeKey`|
+|subscribeKey|String|是|通过`REST`接口`/v1/subscribe/refresh_key.do`获取|
 |pair|String|是|交易对如:`eth_btc`,支持匹配全部:`all`|
 
 **示例:**
