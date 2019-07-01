@@ -7,7 +7,7 @@
 
 ## 与Websocket接口相关的REST接口
 
-### 1.生成subscribeKey
+1.生成subscribeKey
 ```
 POST /v1/subscribe/get_key.do
 ```
