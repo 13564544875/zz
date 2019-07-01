@@ -17,7 +17,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 * 心跳（ping/pong）
     为了防止僵尸链接，减少服务器负荷，服务器端会定时向客户连接发送心跳PING信息。客户端收到PING消息后，应立即回应。如果超过一分钟没有回应任何PING消息，连接会被自动关闭。同时，客户也可以向服务器短发送PING消息，用于检查连接是否正常。服务器端收到PING消息后，也会回应对应端PONG消息。
 
-**请求示例:**
+**示例:**
 
 ```javascript
 # ping
@@ -35,23 +35,21 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 其中，pong字段必需和收到对ping消息字段完全一致。
 
 
+
 * 订阅/退订数据（subscribe/unsubscribe）
     每个订阅数据应该至少包括一个subscribe字段，用于指定订阅的数据类型。现在可以订阅的数据包括：kbar，tick，depth，trade四种。每个订阅数据都需要一个pair字段，用来指定订阅的交易对，交易对以下划线（_)、连接。订阅成功后一旦所订阅的数据有更新，Websocket客户端将收到服务器推送的更新消息
     
 
 1.订阅K线数据
 
-一旦K线数据产生，Websocket服务器将推送至客户端：
-
 **参数:**
 
 |参数名|	参数类型|	必填|	描述|
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|订阅K线数据:`kbar`|
+|subscribe|String|是|`kbar`|
 |kbar|String|是|可订阅的K线类型<br>`1min`:1分钟<br>`5min`:5分钟<br>`15min`:15分钟<br>`30min`:30分钟<br>`1hr`:1小时<br>`4hr`:4小时<br>`day`:1日<br>`week`:1周<br>`month`:1月<br>`year`:1年|
 |pair|String|是|交易对:`eth_btc`|
-
 
 **请求示例:**
 
@@ -100,14 +98,12 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
 2.订阅深度
 
-当市场深度发生变化时，发送最新市场深度更新数据。
-
 **参数:**
 
 |参数名|	参数类型|	必填|	描述|
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|订阅K线数据:`depth`|
+|subscribe|String|是|`depth`|
 |depth|String|是|支持选择:10/50/100|
 |pair|String|是|交易对:`eth_btc`|
 
@@ -150,16 +146,14 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 |bids|List<BigDecimal>|买方深度|
 
 
-3.成交明细
-
-提供市场最新成交明细。
+3.成交记录
 
 **参数:**
 
 |参数名|	参数类型|	必填|	描述|
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|成交明细:`trade`|
+|subscribe|String|是|`trade`|
 |pair|String|是|交易对:`eth_btc`|
 
 
@@ -199,16 +193,14 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 |TS|String|成交时间|
       
  
-4.市场概要
-
-此主题提供24小时内最新市场概要。。
+4.快照记录
 
 **参数:**
 
 |参数名|	参数类型|	必填|	描述|
 | :-----    | :-----   | :-----    | :-----   |
 |action|String|是|请求的动作类型:`subscribe`,`unsubscribe`|
-|subscribe|String|是|成交明细:`trade`|
+|subscribe|String|是|`tick`|
 |pair|String|是|交易对:`eth_btc`|
 
 
@@ -218,22 +210,28 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 # Subscribe Request
 {
     "action":"subscribe",
-    "subscribe":"trade",
+    "subscribe":"tick",
     "pair":"eth_btc"
 }
 # Subscribe Response
 {
-    "trade":{
-        "volume":6.3607,
-        "amount":77148.9303,
-        "price":12129,
-        "direction":"sell",
-        "TS":"2019-06-28T19:55:49.460"
+    "tick":{
+        "to_cny":76643.5,
+        "high":0.02719761,
+        "vol":497529.7686,
+        "low":0.02603071,
+        "change":2.54,
+        "usd":299.12,
+        "to_usd":11083.66,
+        "dir":"sell",
+        "turnover":13224.0186,
+        "latest":0.02698749,
+        "cny":2068.41
     },
-    "type":"trade",
-    "pair":"btc_usdt",
+    "type":"tick",
+    "pair":"eth_btc",
     "SERVER":"V2",
-    "TS":"2019-06-28T19:55:49.466"
+    "TS":"2019-07-01T11:33:55.188"
 }
 ```
 
@@ -241,11 +239,18 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
 |参数名|	参数类型|	描述|
 | :-----    | :-----  | :-----   |
-|amount|String|最近成交数量|
-|price|Integer|成交价|
-|volumePrice|String|最近成交数额|
-|direction|String|`sell`,`buy`|
-|TS|String|成交时间|
+|high|BigDecimal|24小时内最高价|
+|low|BigDecimal|24小时内最低价|
+|latest|BigDecimal|最新成交价|
+|vol|BigDecimal|成交量|
+|turnover|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
+|to_cny|BigDecimal|成交时间|
+|to_usd|BigDecimal|成交时间|
+|cny|BigDecimal|成交时间|
+|usd|BigDecimal|成交时间|
+|dir|String|`sell`,`buy`|
+|change|BigDecimal|24小时内涨跌幅|
+
       
     
 **取消订阅示例:**
@@ -261,16 +266,6 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
 * 请求数据（request）
     Websocket服务器同时支持一次性请求数据
-
-请求数据的格式如下：
-
-{
-  "req": "market.ethbtc.kline.1min",
-  "id": "id10"
-}
-{ "req": "topic to req", "id": "id generate by client" }
-
-一次性返回的数据：
 
 
     每个订阅数据应该至少包括一个request字段，用于指定订阅的数据类型。现在可以订阅
