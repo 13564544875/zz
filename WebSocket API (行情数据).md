@@ -55,6 +55,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **示例:**
 
     ```javascript
+    
     # 订阅请求
     {
         "action":"subscribe",
@@ -112,6 +113,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
+        
         # 订阅请求
         {
             "action":"subscribe",
@@ -161,6 +163,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
+        
         # 订阅请求
         {
             "action":"subscribe",
@@ -208,6 +211,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
         ```javascript
+        
         # 订阅请求
         {
             "action":"subscribe",
@@ -257,6 +261,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **取消订阅示例:**
 
         ```javascript
+        
         #取消K线订阅
         {
             "action":"unsubscribe",
@@ -299,6 +304,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     **请求示例:**
 
     ```javascript
+    
     # 获取K线数据 Request
     {
         "action":"request",
