@@ -112,34 +112,34 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
 
     **请求示例:**
 
-        ```javascript
-        
-        # 订阅请求
-        {
-            "action":"subscribe",
-            "subscribe":"depth",
-            "depth":"100",
-            "pair":"eth_btc"
-        }
-        # 推送数据
-        {
-            "depth":{
-                "asks":[
-                    [
-                        0.00003377,
-                        0.0176
-                    ],
-                    ...
+    ```javascript
+
+    # 订阅请求
+    {
+        "action":"subscribe",
+        "subscribe":"depth",
+        "depth":"100",
+        "pair":"eth_btc"
+    }
+    # 推送数据
+    {
+        "depth":{
+            "asks":[
+                [
+                    0.00003377,
+                    0.0176
                 ],
-                "bids":Array[100]
-            },
-            "type":"depth",
-            "pair":"dax_eth",
-            "count":100,
-            "SERVER":"V2",
-            "TS":"2019-06-28T19:48:23.938"
-        }
-        ```
+                ...
+            ],
+            "bids":Array[100]
+        },
+        "type":"depth",
+        "pair":"dax_eth",
+        "count":100,
+        "SERVER":"V2",
+        "TS":"2019-06-28T19:48:23.938"
+    }
+    ```
 
     **返回值说明:**
 
