@@ -141,9 +141,6 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 }
 # 推送数据
 {
-    "pair":"eth_btc",	
-    "type":"orderUpdate",
-    
     "orderUpdate":{
         "amount":"0.003",
         "orderStatus":2,
@@ -153,6 +150,8 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
         "uuid":"d0db191d-xxxxx-4418-xxxxx-fbb1xxxx2ea9",
         "volumePrice":"0.00007365633"
     },
+    "pair":"eth_btc",	
+    "type":"orderUpdate",
     "SERVER":"V2",
     "TS":"2019-06-28T14:49:37.816"
 }
