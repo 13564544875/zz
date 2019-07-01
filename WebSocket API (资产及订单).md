@@ -137,7 +137,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
   "action": "subscribe",
   "subscribe": "orderUpdate",
   "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
-  "pair": "*",
+  "pair": "all",
 }
 # 推送数据
 {
@@ -191,7 +191,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
   "action": "unsubscribe",
   "subscribe": "orderUpdate",
   "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
-  "pair": "*",
+  "pair": "all",
 }
 ```
 
