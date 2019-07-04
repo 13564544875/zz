@@ -252,9 +252,9 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     |vol|BigDecimal|成交量|
     |turnover|BigDecimal|成交额, 即 sum(每一笔成交价 * 该笔的成交量)|
     |to_cny|BigDecimal|以`eth_btc`为例子, `btc`的cny折合价|
-    |to_usd|BigDecimal|`btc`的usd折合价|
-    |cny|BigDecimal|`eth`的cny折合价|
-    |usd|BigDecimal|`eth`的usd折合价|
+    |to_usd|BigDecimal|以`eth_btc`为例子, `btc`的usd折合价|
+    |cny|BigDecimal|以`eth_btc`为例子, `eth`的cny折合价|
+    |usd|BigDecimal|以`eth_btc`为例子, `eth`的usd折合价|
     |dir|String|`sell`,`buy`|
     |change|BigDecimal|24小时内涨跌幅|
 
