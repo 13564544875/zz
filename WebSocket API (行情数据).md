@@ -199,7 +199,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
     |TS|String|成交时间|
 
 
-    4.订阅24小时行情
+    4.市场行情
 
     **参数:**
 
@@ -333,7 +333,7 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了客户端�
         "pair":"eth_btc"
         "size":"100",
     }
-    # 获取24小时行情数据 Request
+    # 获取市场行情数据 Request
     {
         "action":"request",
         "request":"tick",
