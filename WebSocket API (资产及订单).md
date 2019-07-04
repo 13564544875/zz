@@ -25,12 +25,12 @@ POST /v1/subscribe/get_key.do
 # Request
 POST https://www.lbkex.net/v1/subscribe/get_key.do
 {
-  "api_key"："16702619-0bc8-446d-a3d0-62fb67a8985e",
+  "api_key"："16702619-0xx8-446d-axx0-62xxx7a8985e",
   "sign"："0E0872AD955C0E715B43C78F24B3053A",
 }
 # Response
 {
-  "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260"
+  "subscribeKey": "24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260"
 }
 ```
 	
@@ -62,9 +62,9 @@ POST /v1/subscribe/refresh_key.do
 # Request
 POST https://www.lbkex.net/v1/subscribe/refresh_key.do
 {
-  "api_key"："16702619-0bc8-446d-a3d0-62fb67a8985e",
+  "api_key"："16702619-0xx8-446d-axx0-62xxx7a8985e",
   "sign"："0E0872AD955C0E715B43C78F24B3053A",
-  "subscribeKey"："24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
+  "subscribeKey"："24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260",
 }
 # Response
 {"result": "true"}
@@ -98,9 +98,9 @@ POST /v1/subscribe/destroy_key.do
 # Request
 POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 {
-  "api_key"："16702619-0bc8-446d-a3d0-62fb67a8985e",
+  "api_key"："16702619-0xx8-446d-axx0-62xxx7a8985e",
   "sign"："0E0872AD955C0E715B43C78F24B3053A",
-  "subscribeKey"："24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
+  "subscribeKey"："24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260",
 }
 # Response
 {"result": "true"}
@@ -136,7 +136,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 {
   "action": "subscribe",
   "subscribe": "orderUpdate",
-  "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
+  "subscribeKey": "24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260",
   "pair": "all",
 }
 # 推送数据
@@ -189,7 +189,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 {
   "action": "unsubscribe",
   "subscribe": "orderUpdate",
-  "subscribeKey": "24d87a4a828109612b9d04b78713f42643176bc64f4b6f637819e7ce35836260",
+  "subscribeKey": "24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260",
   "pair": "all",
 }
 ```
