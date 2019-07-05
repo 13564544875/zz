@@ -30,7 +30,8 @@ POST https://www.lbkex.net/v1/subscribe/get_key.do
 }
 # Response
 {
-  "subscribeKey": "24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260"
+    "result":"true",
+    "subscribeKey":"24d87a4xxxxxd04b78713f42643xxxxf4b6f6378xxxxx35836260"
 }
 ```
 	
@@ -38,6 +39,7 @@ POST https://www.lbkex.net/v1/subscribe/get_key.do
 
 |字段|参数类型|描述|
 |-|-|-|
+|result|String|true：成功，false：失败|
 |subscribeKey|String|`subscribeKey`| 
 
 
