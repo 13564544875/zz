@@ -150,6 +150,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
         "role":"maker",
         "updateTime":1561704577786,
         "uuid":"d0db191d-xxxxx-4418-xxxxx-fbb1xxxx2ea9",
+        "txUuid":"da88f354d5xxxxxxa12128aa5bdcb3",
         "volumePrice":"0.00007365633"
     },
     "pair":"eth_btc",	
@@ -163,7 +164,8 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 
 |参数名|	参数类型|	描述|
 | :-----    | :-----  | :-----   |
-|uuid|String|订单Id|
+|uuid|String|订单ID|
+|txUuid|String|交易ID|
 |amount|String|最近成交数量|
 |volumePrice|String|最近成交数额|
 |role|Long|`maker`,`taker`|
