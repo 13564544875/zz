@@ -165,7 +165,7 @@ POST https://www.lbkex.net/v1/subscribe/destroy_key.do
 |参数名|	参数类型|	描述|
 | :-----    | :-----  | :-----   |
 |uuid|String|订单ID|
-|txUuid|String|交易ID|
+|txUuid|String|成交记录ID|
 |amount|String|最近成交数量|
 |volumePrice|String|最近成交数额|
 |role|Long|`maker`,`taker`|
